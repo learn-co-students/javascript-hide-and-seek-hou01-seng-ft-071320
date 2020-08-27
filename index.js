@@ -4,16 +4,24 @@ const getFirstSelector = function(selector){
 }
 
 const nestedTarget = function(){
-    return document.querySelector('div.target')
+    return document.querySelector('#nested .target')
 }
 
 const deepestChild = function(){
-    return document.querySelector("#grand-node > div > div > div > div")
-}
+    let node = document.getElementById('grand-node');
+    let nextNode = node.children[0];
+  
+    while (nextNode) {
+      node = nextNode;
+      nextNode = node.children[0];
+    }
+    return node;
+  }
+  
 
 const increaseRankBy = function(n){
-    const allRank = document.querySelectorAll('ul.ranked-list li')
+    const allRank = document.querySelectorAll('.ranked-list li')
     for (let i = 0; i < allRank.length; i++) {
-        allRank[i].innerHTML = (Number(allRank[i].innerHTML)+Number(n)).toString();
+        allRank[i].innerHTML = (Number(allRank[i].innerHTML)+Number(n));
     }
 }
